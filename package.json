@@ -1,0 +1,12 @@
+{
+  "name": "netlify-opengraph-on-demand-builders",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "Michael Heap <m@michaelheap.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chrome-aws-lambda": "^8.0.2",
+    "puppeteer-core": "^8.0.0"
+  }
+}
