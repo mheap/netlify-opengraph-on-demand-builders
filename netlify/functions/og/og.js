@@ -1,7 +1,8 @@
 const chromium = require("chrome-aws-lambda");
 const puppeteer = require("puppeteer-core");
+const { builder } = require("@netlify/functions");
 
-exports.handler = async function (event, context) {
+exports.handler = builder(async function (event, context) {
   const browser = await puppeteer.launch({
     args: chromium.args,
     defaultViewport: { height: 630, width: 1200 },
@@ -23,4 +24,4 @@ exports.handler = async function (event, context) {
     body: buffer.toString("base64"),
     isBase64Encoded: true,
   };
-};
+});
