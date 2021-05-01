@@ -1,6 +1,7 @@
 const chromium = require("chrome-aws-lambda");
 const puppeteer = require("puppeteer-core");
 const { builder } = require("@netlify/functions");
+const fs = require("fs").promises;
 
 exports.handler = builder(async function (event, context) {
   const browser = await puppeteer.launch({
@@ -10,8 +11,13 @@ exports.handler = builder(async function (event, context) {
     headless: chromium.headless,
   });
 
+  const template = "til";
+  let htmlPage = (
+    await fs.readFile(require.resolve(`./templates/${template}.html`))
+  ).toString();
+
   const page = await browser.newPage();
-  await page.setContent("<body>This is a <strong>Demo</strong></body>");
+  await page.setContent(htmlPage);
   await page.waitForTimeout(1000);
 
   const buffer = await page.screenshot();
